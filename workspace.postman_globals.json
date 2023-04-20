@@ -1,0 +1,21 @@
+{
+	"id": "3927d015-2221-4602-863c-832f758769ee",
+	"values": [
+		{
+			"key": "auth",
+			"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJwbmE4Nl9OekEza1dtSnRqNFh1WG1UWW9LeXVTWXNzUldadDQiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMGI3MmRkNjItMDI0Mi00NzllLWFkZmYtNDcxZjIwM2JlYWNlIiwiaWF0IjoxNjgxOTY3MzY5LCJuYmYiOjE2ODE5NjczNjksImV4cCI6MTY4MTk3MDk2OSwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR1lFSDJLTkIxRkpSMUQ1SkY2MjM5NTlZLTcwMzkyOWY2LTIzMmEtNDA1Ny1iMmYyLWI0N2UwODNiMTk1ZC00ckJaWkU5dTlEcklnMWZxdVFtODI3aVdDVE5DcHdvWkxjTjAifQ.DKs6T-e3g6cdS1IHRCbRtCviDAJXduFb593gJA3bG6T44AdtaOcvQZI_osqstn1qxgN5pxmqut81gOJ9FdJnprXKdqZjbXKvV5tI5PRYgQXiPLRLn2AijqENunlJkrd0yEGx4YSHASDexqKy6JlyPgYo2BywjfE_YOqrS1iZ35E0h0A0jC12HjCBNnbgGjSx2DYr9nuMCEFlqxO7Mj3ZWHx0_fRZjq_X5sKHdgpVrYKF47IQBAv7N_Nuj9-VFCaSi6qfpItT3xR1F22Bgzn4TzcER1HrMRuOUv_PoURVpVtzbm2KvUsyNGEYcB-0CVz-m4bjAva2YK7iN9YjllUrLA",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "baseURL",
+			"value": " https://api-ppe.tesco.com/timemanagement",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2023-04-20T05:11:15.498Z",
+	"_postman_exported_using": "Postman/10.5.8"
+}

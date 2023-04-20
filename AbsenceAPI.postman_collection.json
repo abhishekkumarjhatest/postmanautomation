@@ -1,0 +1,1434 @@
+{
+	"info": {
+		"_postman_id": "66ad0837-fc36-48ea-93c8-b49cc4f9360a",
+		"name": "AbsenceAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12182036"
+	},
+	"item": [
+		{
+			"name": "/v2/absences/search-Family",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//maternityDetailUUID=body.absenceResponseList[0].maternityDetails.maternityDetailUUID\r",
+							"//console.log(maternityDetailUUID)\r",
+							"\r",
+							"//pm.environment.set(\"maternityDetailUUID\",maternityDetailUUID)\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "8effa105-0181-4b60-9fe6-3a107812fc9a",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-01-01\",\r\n    \"endDate\": \"2022-12-01\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n    \"absenceTypeName\": [\r\n        \"Maternity Leave\",\"Adoption Leave\",\"Holiday\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/search-non Family",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"bodydata=JSON.parse(responseBody)\r",
+							"absenceUUID=bodydata.absenceResponseList[0].absenceUUID\r",
+							"console.log(absenceUUID)\r",
+							"pm.environment.set(\"absenceUUID\",absenceUUID)\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "8effa105-0181-4b60-9fe6-3a107812fc9a",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-08-01\",\r\n    \"endDate\": \"2022-08-30\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n   \r\n    \"absenceStatusCodeExclude\": \"string\",\r\n    \"sort\": [\r\n        {\r\n            \"field\": \"startDateTime\",\r\n            \"order\": \"ascending\"\r\n        }\r\n    ],\r\n    \"page\": 0,\r\n    \"count\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/{absenceUUID}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"{{absenceUUID}}"
+					],
+					"query": [
+						{
+							"key": "attentionNeeded",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/{absenceUUID} -Family Leave",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"{{absenceUUID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-uuid/{absenceUUID}/absence-entry-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"PersonabsenceentryID=JSON.parse(responseBody)\r",
+							"console.log(PersonabsenceentryID)\r",
+							"pm.environment.set(\"PersonabsenceentryID\",PersonabsenceentryID)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/absence-uuid/{{absenceUUID}}/person-absence-entry-id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"absence-uuid",
+						"{{absenceUUID}}",
+						"person-absence-entry-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-entry-id/{personAbsenceEntryId}/absence-uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/person-absence-entry-id/{{PersonabsenceentryID}}/absence-uuid",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"person-absence-entry-id",
+						"{{PersonabsenceentryID}}",
+						"absence-uuid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/{absenceUUID}/entitlements",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"bodydata=JSON.parse(responseBody)\r",
+							"entitlementId=bodydata.absenceEntitlements[0].entitlementId\r",
+							"\r",
+							"pm.environment.set(\"entitlementId\",entitlementId)\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}/entitlements",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"{{absenceUUID}}",
+						"entitlements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/{absenceUUID}/entitlements/details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}?entitlementIds={{entitlementId}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"{{absenceUUID}}"
+					],
+					"query": [
+						{
+							"key": "entitlementIds",
+							"value": "{{entitlementId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/colleagues/{colleagueUUId}/absence-types",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"bodydata=JSON.parse(responseBody)\r",
+							"for(count = 0; count < 10; count++) {\r",
+							"               planName=bodydata.absenceTypes[count].name\r",
+							"            \r",
+							"console.log(planName)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "e613a217-e189-42c9-b821-09d947772202",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/colleagues/61d3ea90-a50a-417b-9a4f-83fc70aca0f7/absence-types",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"colleagues",
+						"61d3ea90-a50a-417b-9a4f-83fc70aca0f7",
+						"absence-types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/special-conditions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "TraceId",
+						"value": "aed906d6-83f9-4b00-ac8f-0e09d9274ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/special-conditions?absenceTypeNames=Adoption Leave",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"special-conditions"
+					],
+					"query": [
+						{
+							"key": "absenceTypeNames",
+							"value": "Adoption Leave"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-plans",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "TraceId",
+						"value": "a02a5189-8117-4ea1-a201-5073f18a1999",
+						"type": "text"
+					},
+					{
+						"key": "legislationCode",
+						"value": "GB",
+						"type": "text"
+					},
+					{
+						"key": "page",
+						"value": "0",
+						"type": "text"
+					},
+					{
+						"key": "count",
+						"value": "10",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/absence-plans?page=0&count=10&legislationCode=GB&TraceId=fdd5587d-0550-47f4-b1e4-22ebcc36d7fe",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"absence-plans"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "count",
+							"value": "10"
+						},
+						{
+							"key": "legislationCode",
+							"value": "GB"
+						},
+						{
+							"key": "TraceId",
+							"value": "fdd5587d-0550-47f4-b1e4-22ebcc36d7fe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-type-status-report/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"page\": 0,\r\n    \"count\": 1,\r\n    \"colleagueUUIDs\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"absenceTypeName\": [\r\n        \"Personal Day\",\"Holiday\"\r\n    ],\r\n    \r\n    \"statusAsOfDate\": \"2023-03-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/absence-type-status-report/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"absence-type-status-report",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-requests/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUIDs\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2023-04-14\",\r\n    \"endDate\": \"2023-04-15\",\r\n    \"status\": [\r\n        \"FAILURE\",\"PENDING\",\"SUCCESS\"\r\n    ],\r\n    \"offset\": 0,\r\n    \"count\": 100,\r\n    \"sortBy\": [\r\n        {\r\n            \"field\": \"startDateTime\",\r\n            \"order\": \"ascending\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/absence-requests/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"absence-requests",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/plan-balances/total-plan-balances/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"balanceAsOfDate\": \"2023-03-31T00:00:00.000+0000\",\r\n    \"count\": 100,\r\n    \"page\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/plan-balances/total-plan-balances/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"plan-balances",
+						"total-plan-balances",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/plan-balances/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"balanceAsOfDate\": \" 2024-06-03T00:00:00.000+0000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/plan-balances/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"plan-balances",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/person-absence-entry-id/{personAbsenceEntryId}/core-shift-uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"coreshiftuuid=JSON.parse(responseBody)\r",
+							"console.log(coreshiftuuid)\r",
+							"pm.environment.set(\"coreshiftuuid\",coreshiftuuid)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/person-absence-entry-id/{{PersonabsenceentryID}}/core-shift-uuid",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"person-absence-entry-id",
+						"{{PersonabsenceentryID}}",
+						"core-shift-uuid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/core-shift-uuid/{coreShiftUUID}/person-absence-entry-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/core-shift-uuid/{{coreshiftuuid}}/person-absence-entry-id",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"core-shift-uuid",
+						"{{coreshiftuuid}}",
+						"person-absence-entry-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "7cdf2e55-d06e-45c9-86de-b1128ec98c35",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "absence-uuids",
+						"value": "83e5f736-e886-4579-bedb-042d7d1ef0fb",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "count",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "page",
+						"value": "0",
+						"type": "text"
+					},
+					{
+						"key": "absenceUUID",
+						"value": "9db5e325-534c-4df2-afdf-0e22892f264d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/tasks",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "manager-uuids",
+							"value": "8f726c7e-6e44-466d-a2b8-7ee86fe029bc",
+							"disabled": true
+						},
+						{
+							"key": "task-uuids",
+							"value": "909c15b0-7400-4cfc-88ea-54c8dbc1ecc5",
+							"disabled": true
+						},
+						{
+							"key": "hasNext",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "absence-uuids",
+							"value": "b9883f39-34dc-4ce1-a976-9d604c3fa3f8",
+							"disabled": true
+						},
+						{
+							"key": "assigned-start-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "assigned-end-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "updated-start-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "updated-end-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "sort-field",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "sort-order",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJZdWVzX0NHUEh0MW5zYXJ5Rk5Xa0V0RUxfRmFDaXVoaFpYMTgiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMGI3MmRkNjItMDI0Mi00NzllLWFkZmYtNDcxZjIwM2JlYWNlIiwiaWF0IjoxNjY1MTE3MTM5LCJuYmYiOjE2NjUxMTcxMzksImV4cCI6MTY2NTEyMDczOSwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0VSQkVDVzdZN05FU05WMzRHNzZQSjYxLThiNjUwOWNkLTQ5NmQtNDZlZi04NDViLTRkNDdlOTNmYzNmMy1ZYkxZemRjM3NadHJ6Q0hXUWgwVnJYS2liUjFsYWE3aGVTNmoifQ.Zd-JiKri0hqxRMN6q_SN56xJfK1oiEixE0W4teBdwVSueVaC1Ls9WpQBzbqL3d3gZhoZzogU3urPKMjFYVbkPJZOZSFCTBVuQRE4iQBDDYCpwVNvmi36o8BNYfHaHNMnreZjFeoX0udzx587TC8lgb8JqOpW3QEfs5CskaBZ_kcYeDV_QxSlq9JFeh9ArNh4MsvIlVultvgW8kh2MuwN4kFJOL8W3ebVGT9XOescGqcYxxOKMkfFMTicXmTcGJw9-459mus9o9my3k6NfHqT7znY1Mk7AJd5TzlzuZBRxoCRqwE5cViB7-nsE9kdQBbfmGhSRsSV7XZIbdg4_HdZ9w",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/absences-projection/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"absences-projection",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "approvals",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJycVZoUjNIYWFTeWZ5VFhiZFkxVVJ2NE5ZZWNXZzl1M0FfX0MiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMDJmZTBhNzctM2M0MC00MzAxLTllMjYtMmIwYjdmYzIxODVkIiwiaWF0IjoxNjY1MTE3MDA4LCJuYmYiOjE2NjUxMTcwMDgsImV4cCI6MTY2NTEyMDYwOCwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0VSQkFDRzdEVksyQUYzOTA3NVNKUE4zLTRmYWY1Y2NmLTBiMWQtNDdiMi04MThlLTZmNmQwZDQzMzMyYS1feDhHbG00eW4wb1c5SFdiQTkxUUN4NXJta3FVOWRGWjAzcHAifQ.Ho-_z5nhkqKHigVZxX0SulvBlicSlZlLx5C8rFDfEyc6kw1JpRVYFal0d5FviEqM3gskCPbyL1_h6Z-0D_VMllqIcQ8ANGkug5jx1WXw84sjrM9cVIPeQN8WIFPsBSFs4itA7JWSessJAV-UXB1V9Jdj7p_oP2bKt0aSEM71zIQObTo3D_u2ntIV6zJdbU3hNSj3rywqw56od8iKRaX2X43n3W8xsUNWMcYZuZExKmcr8OvkIi_NllK1xLCFQAk090q6WmW17SlywjKI_dj1Kf-cmSQw0skUhi0fWiAgzYXA3rwODvmJgYEb_N_CmMgTHYjJ8GVzzf334NsFMVtsEg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v1/tasks/my/manager-approval-requests?managerUUID=0b72dd62-0242-479e-adff-471f203beace\n",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"my",
+						"manager-approval-requests"
+					],
+					"query": [
+						{
+							"key": "managerUUID",
+							"value": "0b72dd62-0242-479e-adff-471f203beace\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "statics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJlQ0xydTUwaUhtaFVxNkV6RnJnYkRlRTJzalo0amNxd2Zyd3AiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMGI3MmRkNjItMDI0Mi00NzllLWFkZmYtNDcxZjIwM2JlYWNlIiwiaWF0IjoxNjY1Mzc3MDM0LCJuYmYiOjE2NjUzNzcwMzQsImV4cCI6MTY2NTM4MDYzNCwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0YwMzlSSkdEMUYwSzVISjlLRVRXWEs3LTczNDk3YTdiLWQ2MTEtNDU1NC1hYzVlLTdhZDRkOWI5MGRjNC1tS2NFUENSd1hrd2RKZm11eXF5Rmt3Z19HQzBiYmpLT0R5dXAifQ.NDfDlxp8OkD8vCtaWreym7H9LLyYP02zDZ23JU3goWjWjOPJt-lTlKwQsMcpcUTjwM5VaybQpESbF1ovpuRT4l1LekXw5CHtvmGVXh0xHzuSJeDiTJ-VaR8CYO3z9qPvC3DgqXKCdthzxW5z57oLtciav9S9AIVtwLZIw65AXP2Qn_C2hLp6ihDVtmfLp9wLtQtxYhI7mm6JUjONe-z1B7oWVA-d0J6KDDR35Ng9y-bW0lc2tHVcDjH-l0m2Ug0ZLMZw4izeoLgt5pX4zJ3EnKa2vn0ftxWekF4p8YpVj2Ti0O6o0hYX92_QbSNynyaz1Sj792DjeQH4jqZ8ObLiNA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"absenceType\": \"Sickness\",\r\n    \"colleagueUuids\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"pastWeeksToBeConsidered\": 26,\r\n    \"excludeAbsenceReasons\": [],\r\n    \"includeAbsenceReasons\": [],\r\n    \"excludeAbsencePlanIds\": [300001065621572]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/absence-type-usage-statistics/search",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"absence-type-usage-statistics",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "duration rules",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJPa282RDV6WkZ0SVFrbWdWOGVjZ0tyY3VMTUpfRjlnVXJiUzEiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMGI3MmRkNjItMDI0Mi00NzllLWFkZmYtNDcxZjIwM2JlYWNlIiwiaWF0IjoxNjY5Mjg0NDM0LCJuYmYiOjE2NjkyODQ0MzQsImV4cCI6MTY2OTI4ODAzNCwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0pNSFA0OTZQODY0UVkwUUM5VkRLNk5WLTBkN2YzNjRmLWJhMWYtNGRjOS1iMjUwLTQ2ZTBjYjZhYjE4MC1KOUNxZFIxcXhiMmxqOWo5MDJ3QndVQ2lJNFVhR0NoY0tOMXEifQ.JZx5cFRefZZUB07vWfLJVtMgOXIi_P-2eleNTxXtHsDw0EskbSawf3zjUp8V7DJBUfcFezWNyvs4b4nSfeEByrUDLIfFqVL15fqF0oqfeKL_coXccgFicTPlmiwyP4DZ7-4gQdf-_M5FGz5BjyVRVJbDBHW1fGmnZGPB3EVfPRKVmLEvIdkKQI5jJGAsiRAiiES0BUiZBpmET2aiZPYI2e0jqH0JFqvH9XIhXJRB6jLnjQvpRQ13oE2ev3OaaImlUUvYrSYhV1hFh1le7DXY3rehu2jta7Zwty9iAGZlXyDdss3yulN_7l9jfPlWd5y8iV3rdgKqvPe5U2zpOe8wbA",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"colleagueUUID\": \"bf9f31a6-cdc3-48a7-b1da-d0312da05c77\",\n    \"absenceTypeName\": \"Maternity Leave\",\n    \"startDate\": \"2022-11-23\",\n    \"startTime\": \"06:00\",\n    \"endDate\": \"2022-11-23\",\n    \"endTime\": \"17:00\",\n    \"absenceUUID\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/rules/duration",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"rules",
+						"duration"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
