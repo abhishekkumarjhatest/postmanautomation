@@ -580,7 +580,7 @@
 					}
 				}
 			],
-			"_postman_id": "587628af-944e-418a-97c7-126d8d83eae1",
+			"id": "587628af-944e-418a-97c7-126d8d83eae1",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -603,7 +603,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-01-01\",\r\n    \"endDate\": \"2022-12-01\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n    \"absenceTypeName\": [\r\n        \"Maternity Leave\",\r\n        \"Adoption Leave\",\r\n        \"Holiday\"\r\n    ]\r\n}",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-01-02\",\r\n    \"endDate\": \"2022-12-01\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n    \"absenceTypeName\": [\r\n        \"Maternity Leave\",\r\n        \"Adoption Leave\",\r\n        \"Holiday\"\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -645,7 +645,7 @@
 					}
 				}
 			],
-			"_postman_id": "d0fda2e4-a06b-4902-818f-538d5b46532f",
+			"id": "d0fda2e4-a06b-4902-818f-538d5b46532f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -786,7 +786,7 @@
 					}
 				}
 			],
-			"_postman_id": "60d52237-6c66-461f-ac7c-f7b912753996",
+			"id": "60d52237-6c66-461f-ac7c-f7b912753996",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -903,7 +903,7 @@
 					}
 				}
 			],
-			"_postman_id": "29809b35-9b5c-4040-a40c-89517fe9e257",
+			"id": "29809b35-9b5c-4040-a40c-89517fe9e257",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -948,7 +948,7 @@
 					}
 				}
 			],
-			"_postman_id": "c42a4818-b284-46ff-947c-a65709438bb4",
+			"id": "c42a4818-b284-46ff-947c-a65709438bb4",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -997,7 +997,7 @@
 					}
 				}
 			],
-			"_postman_id": "fcf03e03-e02c-4742-ac28-829cbab63972",
+			"id": "fcf03e03-e02c-4742-ac28-829cbab63972",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1059,7 +1059,7 @@
 					}
 				}
 			],
-			"_postman_id": "9a433e07-f097-44a3-a85a-f50161c8bb18",
+			"id": "9a433e07-f097-44a3-a85a-f50161c8bb18",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1105,7 +1105,7 @@
 					}
 				}
 			],
-			"_postman_id": "11ec8340-29c4-4c6b-b517-417b473793b5",
+			"id": "11ec8340-29c4-4c6b-b517-417b473793b5",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1168,7 +1168,7 @@
 					}
 				}
 			],
-			"_postman_id": "1ab80024-54a1-420b-ab6f-3192a18812d5",
+			"id": "1ab80024-54a1-420b-ab6f-3192a18812d5",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1215,7 +1215,7 @@
 					}
 				}
 			],
-			"_postman_id": "d7abbc47-d5ef-46ac-9246-28cc3b51bd6a",
+			"id": "d7abbc47-d5ef-46ac-9246-28cc3b51bd6a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1279,7 +1279,7 @@
 					}
 				}
 			],
-			"_postman_id": "3f1b7ea1-d062-492f-990f-6dff42bd7e65",
+			"id": "3f1b7ea1-d062-492f-990f-6dff42bd7e65",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1367,7 +1367,7 @@
 					}
 				}
 			],
-			"_postman_id": "97d8ac92-4b2c-4307-a1b5-7697c884ff30",
+			"id": "97d8ac92-4b2c-4307-a1b5-7697c884ff30",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1416,7 +1416,7 @@
 					}
 				}
 			],
-			"_postman_id": "3501b8b5-1e12-4513-ac28-184c41c7efbe",
+			"id": "3501b8b5-1e12-4513-ac28-184c41c7efbe",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1465,7 +1465,7 @@
 					}
 				}
 			],
-			"_postman_id": "46749ee5-381b-4429-92bc-1c8f1d867785",
+			"id": "46749ee5-381b-4429-92bc-1c8f1d867785",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1514,7 +1514,7 @@
 					}
 				}
 			],
-			"_postman_id": "dfee9345-c942-407c-b53a-7aa3b695582d",
+			"id": "dfee9345-c942-407c-b53a-7aa3b695582d",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1566,7 +1566,7 @@
 					}
 				}
 			],
-			"_postman_id": "f91272b7-c68a-4f3d-83f6-01d6d8bd836f",
+			"id": "f91272b7-c68a-4f3d-83f6-01d6d8bd836f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1606,7 +1606,7 @@
 					}
 				}
 			],
-			"_postman_id": "fcf34ba2-cd4f-4e56-a986-776875fb3c0b",
+			"id": "fcf34ba2-cd4f-4e56-a986-776875fb3c0b",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1646,7 +1646,7 @@
 					}
 				}
 			],
-			"_postman_id": "f343d5a5-36a1-44ad-b06d-b015bc7c9bf7",
+			"id": "f343d5a5-36a1-44ad-b06d-b015bc7c9bf7",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1780,7 +1780,7 @@
 					}
 				}
 			],
-			"_postman_id": "2b153424-5c1e-4fa6-9f7b-0f064f4c742c",
+			"id": "2b153424-5c1e-4fa6-9f7b-0f064f4c742c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1829,7 +1829,7 @@
 					}
 				}
 			],
-			"_postman_id": "01358828-7d9d-48a9-9217-4c23d36e0763",
+			"id": "01358828-7d9d-48a9-9217-4c23d36e0763",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1886,7 +1886,7 @@
 					}
 				}
 			],
-			"_postman_id": "c93845b6-222b-4aa1-9810-7bfceac708bd",
+			"id": "c93845b6-222b-4aa1-9810-7bfceac708bd",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1935,7 +1935,7 @@
 					}
 				}
 			],
-			"_postman_id": "2521cc2b-882b-435d-ae8d-9b935ebe3a8e",
+			"id": "2521cc2b-882b-435d-ae8d-9b935ebe3a8e",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1960,8 +1960,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"colleagueUUID\": \"bf9f31a6-cdc3-48a7-b1da-d0312da05c77\",\n    \"absenceTypeName\": \"Maternity Leave\",\n    \"startDate\": \"2022-11-23\",\n    \"startTime\": \"06:00\",\n    \"endDate\": \"2022-11-23\",\n    \"endTime\": \"17:00\",\n    \"absenceUUID\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\n}",
-					"options": {}
+					"raw": "{\n    \"colleagueUUID\": \"bf9f31a6-cdc3-48a7-b1da-d0312da05c77\",\n    \"absenceTypeName\": \"Maternity Leave\",\n    \"startDate\": \"2022-11-23\",\n    \"startTime\": \"06:00\",\n    \"endDate\": \"2022-11-23\",\n    \"endTime\": \"17:00\",\n    \"absenceUUID\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\n}"
 				},
 				"url": "{{baseURL}}/v2/absences/rules/duration"
 			},
