@@ -807,15 +807,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}/loaclbranch",
+					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"v2",
 						"absences",
-						"{{absenceUUID}}",
-						"loaclbranch"
+						"{{absenceUUID}}"
 					],
 					"query": [
 						{
