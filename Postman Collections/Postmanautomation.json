@@ -1,0 +1,1971 @@
+{
+	"info": {
+		"_postman_id": "66ad0837-fc36-48ea-93c8-b49cc4f9360a",
+		"name": "AbsenceAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/v2/absences/search-Family",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f738ba1e-9a61-4946-9b00-3160332c550e",
+						"exec": [
+							"\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"// pm.expect(response.json.colleagueUUID).to.eql(pm.iterationData.get(\"colleagueUUID\"));\r",
+							"// pm.expect(response.json.absenceStatusCode).to.eql(pm.iterationData.get(\"absenceStatusCode\"));\r",
+							"\r",
+							"// });\r",
+							"\r",
+							"pm.test.skip(\"check status code\",function(){\r",
+							"const response = pm.response.json();\r",
+							"pm.expect(pm.response.to.have.status).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//maternityDetailUUID=body.absenceResponseList[0].maternityDetails.maternityDetailUUID\r",
+							"//console.log(maternityDetailUUID)\r",
+							"\r",
+							"//pm.environment.set(\"maternityDetailUUID\",maternityDetailUUID)\r",
+							"\r",
+							"let template =`<table bgcolor=\"#FFFFF\">\r",
+							"        <tr bgcolor=\"#FFFF\">\r",
+							"            <th>personAbsenceEntryId &nbsp &nbsp &nbsp</th>\r",
+							"            <th>absenceUUID &nbsp &nbsp &nbsp</th>\r",
+							"            <th>startDateTime &nbsp &nbsp &nbsp</th>\r",
+							"            <th>endDateTime &nbsp &nbsp &nbsp</th>\r",
+							"            <th>absenceType &nbsp &nbsp &nbsp</th>\r",
+							"            <th>absenceStatus &nbsp &nbsp &nbsp</th>\r",
+							"        </tr>\r",
+							"\r",
+							"        {{#each response.absenceResponseList}}\r",
+							"            <tr>\r",
+							"                <td>{{personAbsenceEntryId}} &nbsp &nbsp &nbsp</td>\r",
+							"                <td>{{absenceUUID}} &nbsp &nbsp &nbsp</td>\r",
+							"                <td>{{startDateTime}} &nbsp &nbsp &nbsp</td>\r",
+							"                <td>{{endDateTime}} &nbsp &nbsp &nbsp</td>\r",
+							"                <td>{{ absenceType.name}} &nbsp &nbsp &nbsp</td>\r",
+							"                <td>{{ absenceStatus.code}} &nbsp &nbsp &nbsp</td>\r",
+							"              \r",
+							"            </tr>\r",
+							"        {{/each}}\r",
+							"    </table>`;\r",
+							"\r",
+							"pm.visualizer.set(template,{response:pm.response.json()});\r",
+							"\r",
+							"var schema = \r",
+							"{\r",
+							"\t\"definitions\": {},\r",
+							"\t\"$schema\": \"http://json-schema.org/draft-07/schema#\", \r",
+							"\t\"$id\": \"https://example.com/object1681445391.json\", \r",
+							"\t\"title\": \"Root\", \r",
+							"\t\"type\": \"object\",\r",
+							"\t\"required\": [\r",
+							"\t\t\"totalCount\",\r",
+							"\t\t\"hasNext\",\r",
+							"\t\t\"totalPages\",\r",
+							"\t\t\"absenceResponseList\"\r",
+							"\t],\r",
+							"\t\"properties\": {\r",
+							"\t\t\"totalCount\": {\r",
+							"\t\t\t\"$id\": \"#root/totalCount\", \r",
+							"\t\t\t\"title\": \"Totalcount\", \r",
+							"\t\t\t\"type\": \"integer\",\r",
+							"\t\t\t\"examples\": [\r",
+							"\t\t\t\t16\r",
+							"\t\t\t],\r",
+							"\t\t\t\"default\": 0\r",
+							"\t\t},\r",
+							"\t\t\"hasNext\": {\r",
+							"\t\t\t\"$id\": \"#root/hasNext\", \r",
+							"\t\t\t\"title\": \"Hasnext\", \r",
+							"\t\t\t\"type\": \"boolean\",\r",
+							"\t\t\t\"examples\": [\r",
+							"\t\t\t\ttrue\r",
+							"\t\t\t],\r",
+							"\t\t\t\"default\": true\r",
+							"\t\t},\r",
+							"\t\t\"totalPages\": {\r",
+							"\t\t\t\"$id\": \"#root/totalPages\", \r",
+							"\t\t\t\"title\": \"Totalpages\", \r",
+							"\t\t\t\"type\": \"integer\",\r",
+							"\t\t\t\"examples\": [\r",
+							"\t\t\t\t4\r",
+							"\t\t\t],\r",
+							"\t\t\t\"default\": 0\r",
+							"\t\t},\r",
+							"\t\t\"absenceResponseList\": {\r",
+							"\t\t\t\"$id\": \"#root/absenceResponseList\", \r",
+							"\t\t\t\"title\": \"Absenceresponselist\", \r",
+							"\t\t\t\"type\": \"array\",\r",
+							"\t\t\t\"default\": [],\r",
+							"\t\t\t\"items\":{\r",
+							"\t\t\t\t\"$id\": \"#root/absenceResponseList/items\", \r",
+							"\t\t\t\t\"title\": \"Items\", \r",
+							"\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\"personAbsenceEntryId\",\r",
+							"\t\t\t\t\t\"colleague\",\r",
+							"\t\t\t\t\t\"absenceUUID\",\r",
+							"\t\t\t\t\t\"comments\",\r",
+							"\t\t\t\t\t\"createdBy\",\r",
+							"\t\t\t\t\t\"lastUpdatedBy\",\r",
+							"\t\t\t\t\t\"source\",\r",
+							"\t\t\t\t\t\"absenceDuration\",\r",
+							"\t\t\t\t\t\"unitOfMeasure\",\r",
+							"\t\t\t\t\t\"unitsOfMeasureMeaning\",\r",
+							"\t\t\t\t\t\"creationDateTime\",\r",
+							"\t\t\t\t\t\"startDateTime\",\r",
+							"\t\t\t\t\t\"endDateTime\",\r",
+							"\t\t\t\t\t\"lastUpdatedDateTime\",\r",
+							"\t\t\t\t\t\"absenceVersion\",\r",
+							"\t\t\t\t\t\"absenceType\",\r",
+							"\t\t\t\t\t\"absenceReason\",\r",
+							"\t\t\t\t\t\"absenceStatus\",\r",
+							"\t\t\t\t\t\"absenceApprovalStatus\",\r",
+							"\t\t\t\t\t\"absenceEntitlementIds\",\r",
+							"\t\t\t\t\t\"absenceOnCoreShift\",\r",
+							"\t\t\t\t\t\"attentionNeeded\",\r",
+							"\t\t\t\t\t\"documentDetails\",\r",
+							"\t\t\t\t\t\"maternityDetails\"\r",
+							"\t\t\t\t],\r",
+							"\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\"personAbsenceEntryId\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/personAbsenceEntryId\", \r",
+							"\t\t\t\t\t\t\"title\": \"Personabsenceentryid\", \r",
+							"\t\t\t\t\t\t\"type\": \"integer\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t300024347610452\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"default\": 0\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"colleague\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/colleague\", \r",
+							"\t\t\t\t\t\t\"title\": \"Colleague\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"colleagueUUID\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"colleagueUUID\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/colleague/colleagueUUID\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Colleagueuuid\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"absenceUUID\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceUUID\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absenceuuid\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"f925413d-281c-4c01-b8e7-a58ba17ee6ed\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"comments\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/comments\", \r",
+							"\t\t\t\t\t\t\"title\": \"Comments\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"updating date and comment\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"createdBy\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/createdBy\", \r",
+							"\t\t\t\t\t\t\"title\": \"Createdby\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"colleagueUUID\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"colleagueUUID\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/createdBy/colleagueUUID\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Colleagueuuid\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"0b72dd62-0242-479e-adff-471f203beace\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"lastUpdatedBy\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/lastUpdatedBy\", \r",
+							"\t\t\t\t\t\t\"title\": \"Lastupdatedby\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"colleagueUUID\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"colleagueUUID\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/lastUpdatedBy/colleagueUUID\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Colleagueuuid\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"source\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/source\", \r",
+							"\t\t\t\t\t\t\"title\": \"Source\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"REST\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"absenceDuration\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceDuration\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absenceduration\", \r",
+							"\t\t\t\t\t\t\"type\": \"number\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t7.5\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"default\": 0.0\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"unitOfMeasure\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/unitOfMeasure\", \r",
+							"\t\t\t\t\t\t\"title\": \"Unitofmeasure\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"H\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"unitsOfMeasureMeaning\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/unitsOfMeasureMeaning\", \r",
+							"\t\t\t\t\t\t\"title\": \"Unitsofmeasuremeaning\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"Hours\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"creationDateTime\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/creationDateTime\", \r",
+							"\t\t\t\t\t\t\"title\": \"Creationdatetime\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"2022-09-13T13:23:27Z\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"startDateTime\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/startDateTime\", \r",
+							"\t\t\t\t\t\t\"title\": \"Startdatetime\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"2022-04-20T08:00:00Z\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"endDateTime\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/endDateTime\", \r",
+							"\t\t\t\t\t\t\"title\": \"Enddatetime\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"2022-04-20T16:00:00Z\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"lastUpdatedDateTime\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/lastUpdatedDateTime\", \r",
+							"\t\t\t\t\t\t\"title\": \"Lastupdateddatetime\", \r",
+							"\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\"2023-03-14T04:52:44.071Z\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"absenceVersion\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceVersion\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absenceversion\", \r",
+							"\t\t\t\t\t\t\"type\": \"integer\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t16\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"default\": 0\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"absenceType\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceType\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absencetype\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"id\",\r",
+							"\t\t\t\t\t\t\t\"name\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"id\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceType/id\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Id\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"integer\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t300000001843054\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"default\": 0\r",
+							"\t\t\t\t\t\t\t},\r",
+							"\t\t\t\t\t\t\t\"name\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceType/name\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Name\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"Holiday\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"absenceReason\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceReason\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absencereason\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"id\",\r",
+							"\t\t\t\t\t\t\t\"name\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"id\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceReason/id\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Id\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"integer\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t300001079268981\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"default\": 0\r",
+							"\t\t\t\t\t\t\t},\r",
+							"\t\t\t\t\t\t\t\"name\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceReason/name\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Name\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"Holiday\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"absenceStatus\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceStatus\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absencestatus\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"code\",\r",
+							"\t\t\t\t\t\t\t\"description\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"code\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceStatus/code\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Code\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"SUBMITTED\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t},\r",
+							"\t\t\t\t\t\t\t\"description\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceStatus/description\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Description\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\" absence is created or updated\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"absenceApprovalStatus\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceApprovalStatus\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absenceapprovalstatus\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"code\",\r",
+							"\t\t\t\t\t\t\t\"description\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"code\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceApprovalStatus/code\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Code\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"APPROVED\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t},\r",
+							"\t\t\t\t\t\t\t\"description\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceApprovalStatus/description\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Description\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"absence is approved\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"absenceEntitlementIds\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceEntitlementIds\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absenceentitlementids\", \r",
+							"\t\t\t\t\t\t\"type\": \"array\",\r",
+							"\t\t\t\t\t\t\"default\": [],\r",
+							"\t\t\t\t\t\t\"items\":{\r",
+							"\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceEntitlementIds/items\", \r",
+							"\t\t\t\t\t\t\t\"title\": \"Items\", \r",
+							"\t\t\t\t\t\t\t\"type\": \"integer\",\r",
+							"\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t300024717628803\r",
+							"\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\"default\": 0\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"absenceOnCoreShift\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceOnCoreShift\", \r",
+							"\t\t\t\t\t\t\"title\": \"Absenceoncoreshift\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t\t\"absenceOnCoreShiftUUID\",\r",
+							"\t\t\t\t\t\t\t\"startDateTime\",\r",
+							"\t\t\t\t\t\t\t\"endDateTime\",\r",
+							"\t\t\t\t\t\t\t\"duration\"\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t\t\"absenceOnCoreShiftUUID\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceOnCoreShift/absenceOnCoreShiftUUID\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Absenceoncoreshiftuuid\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"79c03c69-cd6c-4b3e-b8d9-c5100dd68b93\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t},\r",
+							"\t\t\t\t\t\t\t\"startDateTime\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceOnCoreShift/startDateTime\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Startdatetime\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"2022-04-20T08:00:00Z\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t},\r",
+							"\t\t\t\t\t\t\t\"endDateTime\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceOnCoreShift/endDateTime\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Enddatetime\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"string\",\r",
+							"\t\t\t\t\t\t\t\t\"default\": \"\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t\"2022-04-20T16:00:00Z\"\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"pattern\": \"^.*$\"\r",
+							"\t\t\t\t\t\t\t},\r",
+							"\t\t\t\t\t\t\t\"duration\": {\r",
+							"\t\t\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/absenceOnCoreShift/duration\", \r",
+							"\t\t\t\t\t\t\t\t\"title\": \"Duration\", \r",
+							"\t\t\t\t\t\t\t\t\"type\": \"number\",\r",
+							"\t\t\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\t\t\t7.5\r",
+							"\t\t\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\t\t\"default\": 0.0\r",
+							"\t\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							",\r",
+							"\t\t\t\t\t\"attentionNeeded\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/attentionNeeded\", \r",
+							"\t\t\t\t\t\t\"title\": \"Attentionneeded\", \r",
+							"\t\t\t\t\t\t\"type\": \"boolean\",\r",
+							"\t\t\t\t\t\t\"examples\": [\r",
+							"\t\t\t\t\t\t\tfalse\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"default\": true\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"documentDetails\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/documentDetails\", \r",
+							"\t\t\t\t\t\t\"title\": \"Documentdetails\", \r",
+							"\t\t\t\t\t\t\"type\": \"array\",\r",
+							"\t\t\t\t\t\t\"default\": []\r",
+							"\t\t\t\t\t},\r",
+							"\t\t\t\t\t\"maternityDetails\": {\r",
+							"\t\t\t\t\t\t\"$id\": \"#root/absenceResponseList/items/maternityDetails\", \r",
+							"\t\t\t\t\t\t\"title\": \"Maternitydetails\", \r",
+							"\t\t\t\t\t\t\"type\": \"object\",\r",
+							"\t\t\t\t\t\t\"required\": [\r",
+							"\t\t\t\t\t\t],\r",
+							"\t\t\t\t\t\t\"properties\": {\r",
+							"\t\t\t\t\t\t}\r",
+							"\t\t\t\t\t}\r",
+							"\r",
+							"\t\t\t\t}\r",
+							"\t\t\t}\r",
+							"\r",
+							"\t\t}\r",
+							"\t}\r",
+							"};\r",
+							"\r",
+							"\r",
+							"var schema = {\r",
+							"    \"items\": {\r",
+							"        \"type\": \"boolean\"\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"   pm.response.to.have.jsonSchema(schema);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9d32ab8e-6200-42b7-ac21-10454baf43e3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "587628af-944e-418a-97c7-126d8d83eae1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "8effa105-0181-4b60-9fe6-3a107812fc9a",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{auth}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-01-01\",\r\n    \"endDate\": \"2022-12-01\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n    \"absenceTypeName\": [\r\n        \"Maternity Leave\",\r\n        \"Adoption Leave\",\r\n        \"Holiday\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/search"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/search-non Family",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "865e4bda-5297-41dc-b8dd-dc6aa461a574",
+						"exec": [
+							"bodydata=JSON.parse(responseBody)\r",
+							"absenceUUID=bodydata.absenceResponseList[0].absenceUUID\r",
+							"console.log(absenceUUID)\r",
+							"pm.environment.set(\"absenceUUID\",absenceUUID)\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "d0fda2e4-a06b-4902-818f-538d5b46532f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-08-01\",\r\n    \"endDate\": \"2022-08-30\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n   \r\n    \"absenceStatusCodeExclude\": \"string\",\r\n    \"sort\": [\r\n        {\r\n            \"field\": \"startDateTime\",\r\n            \"order\": \"ascending\"\r\n        }\r\n    ],\r\n    \"page\": 0,\r\n    \"count\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/search"
+			},
+			"response": [
+				{
+					"id": "2248d2ea-d343-4c66-b01a-4f45d676c4f8",
+					"name": "/v2/absences/search-non Family",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "client_id",
+								"value": "8effa105-0181-4b60-9fe6-3a107812fc9a",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{Swaptoken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-08-01\",\r\n    \"endDate\": \"2022-08-30\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n   \r\n    \"absenceStatusCodeExclude\": \"string\",\r\n    \"sort\": [\r\n        {\r\n            \"field\": \"startDateTime\",\r\n            \"order\": \"ascending\"\r\n        }\r\n    ],\r\n    \"page\": 0,\r\n    \"count\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/v2/absences/search"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 14 Apr 2023 06:58:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"totalCount\": 2,\n    \"hasNext\": false,\n    \"totalPages\": 1,\n    \"absenceResponseList\": [\n        {\n            \"personAbsenceEntryId\": 300024259542920,\n            \"colleague\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"absenceUUID\": \"6423301f-72b3-4b65-8caf-392221815697\",\n            \"comments\": \"dsdgfdfgh\",\n            \"createdBy\": {\n                \"colleagueUUID\": \"0b72dd62-0242-479e-adff-471f203beace\"\n            },\n            \"lastUpdatedBy\": {\n                \"colleagueUUID\": null\n            },\n            \"source\": \"REST\",\n            \"absenceDuration\": 7.5,\n            \"unitOfMeasure\": \"H\",\n            \"unitsOfMeasureMeaning\": \"Hours\",\n            \"creationDateTime\": \"2022-08-24T09:17:54Z\",\n            \"startDateTime\": \"2022-08-03T08:00:00Z\",\n            \"endDateTime\": \"2022-08-03T16:00:00Z\",\n            \"lastUpdatedDateTime\": \"2022-11-09T11:31:54.425Z\",\n            \"absenceVersion\": 64,\n            \"absenceType\": {\n                \"id\": 300000001843214,\n                \"name\": \"Paid Absence\"\n            },\n            \"absenceReason\": {\n                \"id\": 300000559109011,\n                \"name\": \"Compassionate Leave\"\n            },\n            \"absenceStatus\": {\n                \"code\": \"SUBMITTED\",\n                \"description\": \" absence is created or updated\"\n            },\n            \"absenceApprovalStatus\": {\n                \"code\": \"APPROVED\",\n                \"description\": \"absence is approved\"\n            },\n            \"absenceEntitlementIds\": [\n                300024444134601\n            ],\n            \"absenceOnCoreShift\": {\n                \"absenceOnCoreShiftUUID\": \"5b4bfead-e9e5-4862-933d-ffdefc5b139e\",\n                \"startDateTime\": \"2022-08-03T08:00:00Z\",\n                \"endDateTime\": \"2022-08-03T16:00:00Z\",\n                \"duration\": 7.5\n            },\n            \"attentionNeeded\": false,\n            \"documentDetails\": [],\n            \"maternityDetails\": {}\n        },\n        {\n            \"colleague\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"absenceUUID\": \"623d00bf-854b-4b23-b637-196f8256ce5e\",\n            \"comments\": \"creating AW + CS hours, updating absence\",\n            \"createdBy\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"lastUpdatedBy\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"source\": \"ENTERPRISE_REST_API\",\n            \"unitOfMeasure\": \"H\",\n            \"unitsOfMeasureMeaning\": \"Hours\",\n            \"creationDateTime\": \"2022-08-12T03:49:00Z\",\n            \"startDateTime\": \"2022-08-29T18:00:00Z\",\n            \"endDateTime\": \"2022-08-30T07:00:00Z\",\n            \"lastUpdatedDateTime\": \"2022-08-12T04:49:22.166Z\",\n            \"absenceVersion\": 4,\n            \"absenceType\": {\n                \"id\": 300000001843054,\n                \"name\": \"Holiday\"\n            },\n            \"absenceReason\": {\n                \"id\": 300001079268981,\n                \"name\": \"Holiday\"\n            },\n            \"absenceStatus\": {\n                \"code\": \"SUBMITTED\",\n                \"description\": \" absence is created or updated\"\n            },\n            \"absenceApprovalStatus\": {\n                \"code\": \"APPROVED\",\n                \"description\": \"absence is approved\"\n            },\n            \"absenceEntitlementIds\": [],\n            \"attentionNeeded\": false,\n            \"documentDetails\": [],\n            \"maternityDetails\": {}\n        }\n    ]\n}"
+				},
+				{
+					"id": "ac1e0ae5-240e-474b-87be-da4836cabc7b",
+					"name": "/v2/absences/search-non Family",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2022-08-01\",\r\n    \"endDate\": \"2022-08-30\",\r\n    \"absenceStatusCode\": \"SUBMITTED\",\r\n    \"absenceApprovalStatusCode\": [\r\n        \"APPROVED\"\r\n    ],\r\n   \r\n    \"absenceStatusCodeExclude\": \"string\",\r\n    \"sort\": [\r\n        {\r\n            \"field\": \"startDateTime\",\r\n            \"order\": \"ascending\"\r\n        }\r\n    ],\r\n    \"page\": 0,\r\n    \"count\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseURL}}/v2/absences/search"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 21 Apr 2023 07:11:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"totalCount\": 2,\n    \"hasNext\": false,\n    \"totalPages\": 1,\n    \"absenceResponseList\": [\n        {\n            \"personAbsenceEntryId\": 300024259542920,\n            \"colleague\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"absenceUUID\": \"6423301f-72b3-4b65-8caf-392221815697\",\n            \"comments\": \"dsdgfdfgh\",\n            \"createdBy\": {\n                \"colleagueUUID\": \"0b72dd62-0242-479e-adff-471f203beace\"\n            },\n            \"lastUpdatedBy\": {\n                \"colleagueUUID\": null\n            },\n            \"source\": \"REST\",\n            \"absenceDuration\": 7.5,\n            \"unitOfMeasure\": \"H\",\n            \"unitsOfMeasureMeaning\": \"Hours\",\n            \"creationDateTime\": \"2022-08-24T09:17:54Z\",\n            \"startDateTime\": \"2022-08-03T08:00:00Z\",\n            \"endDateTime\": \"2022-08-03T16:00:00Z\",\n            \"lastUpdatedDateTime\": \"2022-11-09T11:31:54.425Z\",\n            \"absenceVersion\": 64,\n            \"absenceType\": {\n                \"id\": 300000001843214,\n                \"name\": \"Paid Absence\"\n            },\n            \"absenceReason\": {\n                \"id\": 300000559109011,\n                \"name\": \"Compassionate Leave\"\n            },\n            \"absenceStatus\": {\n                \"code\": \"SUBMITTED\",\n                \"description\": \" absence is created or updated\"\n            },\n            \"absenceApprovalStatus\": {\n                \"code\": \"APPROVED\",\n                \"description\": \"absence is approved\"\n            },\n            \"absenceEntitlementIds\": [\n                300024444134601\n            ],\n            \"absenceOnCoreShift\": {\n                \"absenceOnCoreShiftUUID\": \"5b4bfead-e9e5-4862-933d-ffdefc5b139e\",\n                \"startDateTime\": \"2022-08-03T08:00:00Z\",\n                \"endDateTime\": \"2022-08-03T16:00:00Z\",\n                \"duration\": 7.5\n            },\n            \"attentionNeeded\": false,\n            \"documentDetails\": [],\n            \"maternityDetails\": {}\n        },\n        {\n            \"colleague\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"absenceUUID\": \"623d00bf-854b-4b23-b637-196f8256ce5e\",\n            \"comments\": \"creating AW + CS hours, updating absence\",\n            \"createdBy\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"lastUpdatedBy\": {\n                \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n            },\n            \"source\": \"ENTERPRISE_REST_API\",\n            \"unitOfMeasure\": \"H\",\n            \"unitsOfMeasureMeaning\": \"Hours\",\n            \"creationDateTime\": \"2022-08-12T03:49:00Z\",\n            \"startDateTime\": \"2022-08-29T18:00:00Z\",\n            \"endDateTime\": \"2022-08-30T07:00:00Z\",\n            \"lastUpdatedDateTime\": \"2022-08-12T04:49:22.166Z\",\n            \"absenceVersion\": 4,\n            \"absenceType\": {\n                \"id\": 300000001843054,\n                \"name\": \"Holiday\"\n            },\n            \"absenceReason\": {\n                \"id\": 300001079268981,\n                \"name\": \"Holiday\"\n            },\n            \"absenceStatus\": {\n                \"code\": \"SUBMITTED\",\n                \"description\": \" absence is created or updated\"\n            },\n            \"absenceApprovalStatus\": {\n                \"code\": \"APPROVED\",\n                \"description\": \"absence is approved\"\n            },\n            \"absenceEntitlementIds\": [],\n            \"attentionNeeded\": false,\n            \"documentDetails\": [],\n            \"maternityDetails\": {}\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "/v2/absences/{absenceUUID}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03753a28-9dae-4272-8cb6-e9987a469f57",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "60d52237-6c66-461f-ac7c-f7b912753996",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"{{absenceUUID}}"
+					],
+					"query": [
+						{
+							"key": "attentionNeeded",
+							"value": "true",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "98ebd2e8-c669-4a56-b211-1ceec5cf2b83",
+					"name": "/v2/absences/{absenceUUID}",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"v2",
+								"absences",
+								"{{absenceUUID}}"
+							],
+							"query": [
+								{
+									"key": "attentionNeeded",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 14 Apr 2023 07:10:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"personAbsenceEntryId\": 300024259542920,\n    \"colleague\": {\n        \"colleagueUUID\": \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\n    },\n    \"absenceUUID\": \"6423301f-72b3-4b65-8caf-392221815697\",\n    \"comments\": \"dsdgfdfgh\",\n    \"createdBy\": {\n        \"colleagueUUID\": \"0b72dd62-0242-479e-adff-471f203beace\"\n    },\n    \"lastUpdatedBy\": {\n        \"colleagueUUID\": null\n    },\n    \"source\": \"REST\",\n    \"absenceDuration\": 7.5,\n    \"unitOfMeasure\": \"H\",\n    \"unitsOfMeasureMeaning\": \"Hours\",\n    \"creationDateTime\": \"2022-08-24T09:17:54Z\",\n    \"startDateTime\": \"2022-08-03T08:00:00Z\",\n    \"endDateTime\": \"2022-08-03T16:00:00Z\",\n    \"lastUpdatedDateTime\": \"2022-11-09T11:31:54.425Z\",\n    \"absenceVersion\": 64,\n    \"absenceType\": {\n        \"id\": 300000001843214,\n        \"name\": \"Paid Absence\"\n    },\n    \"absenceReason\": {\n        \"id\": 300000559109011,\n        \"name\": \"Compassionate Leave\"\n    },\n    \"absenceStatus\": {\n        \"code\": \"SUBMITTED\",\n        \"description\": \" absence is created or updated\"\n    },\n    \"absenceApprovalStatus\": {\n        \"code\": \"APPROVED\",\n        \"description\": \"absence is approved\"\n    },\n    \"absenceEntitlementIds\": [\n        300024444134601\n    ],\n    \"absenceOnCoreShift\": {\n        \"absenceOnCoreShiftUUID\": \"5b4bfead-e9e5-4862-933d-ffdefc5b139e\",\n        \"startDateTime\": \"2022-08-03T08:00:00Z\",\n        \"endDateTime\": \"2022-08-03T16:00:00Z\",\n        \"duration\": 7.5\n    },\n    \"attentionNeeded\": false,\n    \"documentDetails\": [],\n    \"maternityDetails\": {}\n}"
+				}
+			]
+		},
+		{
+			"name": "/v2/absences/{absenceUUID} -Family Leave",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0db7694-b150-4c00-9777-9b6e681d8f43",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "29809b35-9b5c-4040-a40c-89517fe9e257",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/v2/absences/{{absenceUUID}}"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-uuid/{absenceUUID}/absence-entry-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c713201-27c2-4599-8f2f-b77ec166ca02",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"PersonabsenceentryID=JSON.parse(responseBody)\r",
+							"console.log(PersonabsenceentryID)\r",
+							"pm.environment.set(\"PersonabsenceentryID\",PersonabsenceentryID)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "c42a4818-b284-46ff-947c-a65709438bb4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/v2/absences/absence-uuid/{{absenceUUID}}/person-absence-entry-id"
+			},
+			"response": [
+				{
+					"id": "c0f67c54-6c67-497a-9635-5370d4cd7b51",
+					"name": "/v2/absences/absence-uuid/{absenceUUID}/absence-entry-id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseURL}}/v2/absences/absence-uuid/{{absenceUUID}}/person-absence-entry-id"
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"responseTime": null,
+					"body": "300024259542920"
+				}
+			]
+		},
+		{
+			"name": "/v2/absences/absence-entry-id/{personAbsenceEntryId}/absence-uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f42d02d6-33d5-41db-8d2f-f9bfa81bdaa7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "fcf03e03-e02c-4742-ac28-829cbab63972",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/v2/absences/person-absence-entry-id/{{PersonabsenceentryID}}/absence-uuid"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/{absenceUUID}/entitlements",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d19107a-e43f-45ce-855d-7b1fd832d997",
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"bodydata=JSON.parse(responseBody)\r",
+							"entitlementId=bodydata.absenceEntitlements[0].entitlementId\r",
+							"\r",
+							"pm.environment.set(\"entitlementId\",entitlementId)\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3deb5782-ac12-4e0a-9931-44cbaa0ceedf",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "9a433e07-f097-44a3-a85a-f50161c8bb18",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/v2/absences/{{absenceUUID}}/entitlements"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/{absenceUUID}/entitlements/details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a279f4ff-8044-4cff-8028-f110af823b39",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "11ec8340-29c4-4c6b-b517-417b473793b5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/{{absenceUUID}}?entitlementIds={{entitlementId}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"{{absenceUUID}}"
+					],
+					"query": [
+						{
+							"key": "entitlementIds",
+							"value": "{{entitlementId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/colleagues/{colleagueUUId}/absence-types",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1cecacf1-0706-42b0-9d96-285dbafa9a5a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"bodydata=JSON.parse(responseBody)\r",
+							"for(count = 0; count < 10; count++) {\r",
+							"               planName=bodydata.absenceTypes[count].name\r",
+							"            \r",
+							"console.log(planName)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "1ab80024-54a1-420b-ab6f-3192a18812d5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "e613a217-e189-42c9-b821-09d947772202",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/v2/absences/colleagues/61d3ea90-a50a-417b-9a4f-83fc70aca0f7/absence-types"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/special-conditions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f5f9938-cbc1-4828-8b53-6568273b5560",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "d7abbc47-d5ef-46ac-9246-28cc3b51bd6a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "TraceId",
+						"value": "aed906d6-83f9-4b00-ac8f-0e09d9274ff9",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/special-conditions?absenceTypeNames=Adoption Leave",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"special-conditions"
+					],
+					"query": [
+						{
+							"key": "absenceTypeNames",
+							"value": "Adoption Leave"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-plans",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "777c55f0-7ddf-45b3-bed5-4fbff94833ec",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "3f1b7ea1-d062-492f-990f-6dff42bd7e65",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "TraceId",
+						"value": "a02a5189-8117-4ea1-a201-5073f18a1999",
+						"type": "text"
+					},
+					{
+						"key": "legislationCode",
+						"value": "GB",
+						"type": "text"
+					},
+					{
+						"key": "page",
+						"value": "0",
+						"type": "text"
+					},
+					{
+						"key": "count",
+						"value": "10",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/absence-plans?page=0&count=10&legislationCode=GB&TraceId=fdd5587d-0550-47f4-b1e4-22ebcc36d7fe",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"absence-plans"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "count",
+							"value": "10"
+						},
+						{
+							"key": "legislationCode",
+							"value": "GB"
+						},
+						{
+							"key": "TraceId",
+							"value": "fdd5587d-0550-47f4-b1e4-22ebcc36d7fe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-type-status-report/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9498639-75ab-4931-a6e4-5b1cece01926",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "97d8ac92-4b2c-4307-a1b5-7697c884ff30",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"page\": 0,\r\n    \"count\": 1,\r\n    \"colleagueUUIDs\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"absenceTypeName\": [\r\n        \"Personal Day\",\"Holiday\"\r\n    ],\r\n    \r\n    \"statusAsOfDate\": \"2023-03-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/absence-type-status-report/search"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/absence-requests/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3985654-7070-4530-ac99-2b111d54c9f8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "3501b8b5-1e12-4513-ac28-184c41c7efbe",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUIDs\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"startDate\": \"2023-04-14\",\r\n    \"endDate\": \"2023-04-15\",\r\n    \"status\": [\r\n        \"FAILURE\",\"PENDING\",\"SUCCESS\"\r\n    ],\r\n    \"offset\": 0,\r\n    \"count\": 100,\r\n    \"sortBy\": [\r\n        {\r\n            \"field\": \"startDateTime\",\r\n            \"order\": \"ascending\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/absence-requests/search"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/plan-balances/total-plan-balances/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f787c28-0a2d-4ff1-8247-6eb6d47349bc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "46749ee5-381b-4429-92bc-1c8f1d867785",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"balanceAsOfDate\": \"2023-03-31T00:00:00.000+0000\",\r\n    \"count\": 100,\r\n    \"page\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/plan-balances/total-plan-balances/search"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/plan-balances/search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6d5377e-2d3a-430e-ad71-a2dad89563d6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "dfee9345-c942-407c-b53a-7aa3b695582d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"colleagueUUID\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"balanceAsOfDate\": \" 2024-06-03T00:00:00.000+0000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/plan-balances/search"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/person-absence-entry-id/{personAbsenceEntryId}/core-shift-uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0fa7bb8-ff25-4957-9700-aab4db34f832",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"coreshiftuuid=JSON.parse(responseBody)\r",
+							"console.log(coreshiftuuid)\r",
+							"pm.environment.set(\"coreshiftuuid\",coreshiftuuid)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "f91272b7-c68a-4f3d-83f6-01d6d8bd836f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/v2/absences/person-absence-entry-id/{{PersonabsenceentryID}}/core-shift-uuid"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/core-shift-uuid/{coreShiftUUID}/person-absence-entry-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd8061da-31fb-4095-96c7-37ce6a70034b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "fcf34ba2-cd4f-4e56-a986-776875fb3c0b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/v2/absences/core-shift-uuid/{{coreshiftuuid}}/person-absence-entry-id"
+			},
+			"response": []
+		},
+		{
+			"name": "/v2/absences/tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce87add1-7398-4eb0-aeec-4e763b207969",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "f343d5a5-36a1-44ad-b06d-b015bc7c9bf7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceId",
+						"value": "7cdf2e55-d06e-45c9-86de-b1128ec98c35",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "{{Swaptoken}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "absence-uuids",
+						"value": "83e5f736-e886-4579-bedb-042d7d1ef0fb",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "count",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "page",
+						"value": "0",
+						"type": "text"
+					},
+					{
+						"key": "absenceUUID",
+						"value": "9db5e325-534c-4df2-afdf-0e22892f264d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v2/absences/tasks",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"absences",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "manager-uuids",
+							"value": "8f726c7e-6e44-466d-a2b8-7ee86fe029bc",
+							"disabled": true
+						},
+						{
+							"key": "task-uuids",
+							"value": "909c15b0-7400-4cfc-88ea-54c8dbc1ecc5",
+							"disabled": true
+						},
+						{
+							"key": "hasNext",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "absence-uuids",
+							"value": "b9883f39-34dc-4ce1-a976-9d604c3fa3f8",
+							"disabled": true
+						},
+						{
+							"key": "assigned-start-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "assigned-end-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "updated-start-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "updated-end-date",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "sort-field",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "sort-order",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Projection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df005c76-6e75-4ce0-b8bb-8cecac495cdb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "2b153424-5c1e-4fa6-9f7b-0f064f4c742c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJZdWVzX0NHUEh0MW5zYXJ5Rk5Xa0V0RUxfRmFDaXVoaFpYMTgiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMGI3MmRkNjItMDI0Mi00NzllLWFkZmYtNDcxZjIwM2JlYWNlIiwiaWF0IjoxNjY1MTE3MTM5LCJuYmYiOjE2NjUxMTcxMzksImV4cCI6MTY2NTEyMDczOSwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0VSQkVDVzdZN05FU05WMzRHNzZQSjYxLThiNjUwOWNkLTQ5NmQtNDZlZi04NDViLTRkNDdlOTNmYzNmMy1ZYkxZemRjM3NadHJ6Q0hXUWgwVnJYS2liUjFsYWE3aGVTNmoifQ.Zd-JiKri0hqxRMN6q_SN56xJfK1oiEixE0W4teBdwVSueVaC1Ls9WpQBzbqL3d3gZhoZzogU3urPKMjFYVbkPJZOZSFCTBVuQRE4iQBDDYCpwVNvmi36o8BNYfHaHNMnreZjFeoX0udzx587TC8lgb8JqOpW3QEfs5CskaBZ_kcYeDV_QxSlq9JFeh9ArNh4MsvIlVultvgW8kh2MuwN4kFJOL8W3ebVGT9XOescGqcYxxOKMkfFMTicXmTcGJw9-459mus9o9my3k6NfHqT7znY1Mk7AJd5TzlzuZBRxoCRqwE5cViB7-nsE9kdQBbfmGhSRsSV7XZIbdg4_HdZ9w",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/absences-projection/search"
+			},
+			"response": []
+		},
+		{
+			"name": "approvals",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39333d7c-de2d-4d97-bff1-fefe4242ff78",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "01358828-7d9d-48a9-9217-4c23d36e0763",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJycVZoUjNIYWFTeWZ5VFhiZFkxVVJ2NE5ZZWNXZzl1M0FfX0MiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMDJmZTBhNzctM2M0MC00MzAxLTllMjYtMmIwYjdmYzIxODVkIiwiaWF0IjoxNjY1MTE3MDA4LCJuYmYiOjE2NjUxMTcwMDgsImV4cCI6MTY2NTEyMDYwOCwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0VSQkFDRzdEVksyQUYzOTA3NVNKUE4zLTRmYWY1Y2NmLTBiMWQtNDdiMi04MThlLTZmNmQwZDQzMzMyYS1feDhHbG00eW4wb1c5SFdiQTkxUUN4NXJta3FVOWRGWjAzcHAifQ.Ho-_z5nhkqKHigVZxX0SulvBlicSlZlLx5C8rFDfEyc6kw1JpRVYFal0d5FviEqM3gskCPbyL1_h6Z-0D_VMllqIcQ8ANGkug5jx1WXw84sjrM9cVIPeQN8WIFPsBSFs4itA7JWSessJAV-UXB1V9Jdj7p_oP2bKt0aSEM71zIQObTo3D_u2ntIV6zJdbU3hNSj3rywqw56od8iKRaX2X43n3W8xsUNWMcYZuZExKmcr8OvkIi_NllK1xLCFQAk090q6WmW17SlywjKI_dj1Kf-cmSQw0skUhi0fWiAgzYXA3rwODvmJgYEb_N_CmMgTHYjJ8GVzzf334NsFMVtsEg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/v1/tasks/my/manager-approval-requests?managerUUID=0b72dd62-0242-479e-adff-471f203beace\n",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v1",
+						"tasks",
+						"my",
+						"manager-approval-requests"
+					],
+					"query": [
+						{
+							"key": "managerUUID",
+							"value": "0b72dd62-0242-479e-adff-471f203beace\n"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "statics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad682e73-041f-49e7-acc4-2b9b3bb26df2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "c93845b6-222b-4aa1-9810-7bfceac708bd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJlQ0xydTUwaUhtaFVxNkV6RnJnYkRlRTJzalo0amNxd2Zyd3AiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMGI3MmRkNjItMDI0Mi00NzllLWFkZmYtNDcxZjIwM2JlYWNlIiwiaWF0IjoxNjY1Mzc3MDM0LCJuYmYiOjE2NjUzNzcwMzQsImV4cCI6MTY2NTM4MDYzNCwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0YwMzlSSkdEMUYwSzVISjlLRVRXWEs3LTczNDk3YTdiLWQ2MTEtNDU1NC1hYzVlLTdhZDRkOWI5MGRjNC1tS2NFUENSd1hrd2RKZm11eXF5Rmt3Z19HQzBiYmpLT0R5dXAifQ.NDfDlxp8OkD8vCtaWreym7H9LLyYP02zDZ23JU3goWjWjOPJt-lTlKwQsMcpcUTjwM5VaybQpESbF1ovpuRT4l1LekXw5CHtvmGVXh0xHzuSJeDiTJ-VaR8CYO3z9qPvC3DgqXKCdthzxW5z57oLtciav9S9AIVtwLZIw65AXP2Qn_C2hLp6ihDVtmfLp9wLtQtxYhI7mm6JUjONe-z1B7oWVA-d0J6KDDR35Ng9y-bW0lc2tHVcDjH-l0m2Ug0ZLMZw4izeoLgt5pX4zJ3EnKa2vn0ftxWekF4p8YpVj2Ti0O6o0hYX92_QbSNynyaz1Sj792DjeQH4jqZ8ObLiNA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"absenceType\": \"Sickness\",\r\n    \"colleagueUuids\": [\r\n        \"61d3ea90-a50a-417b-9a4f-83fc70aca0f7\"\r\n    ],\r\n    \"pastWeeksToBeConsidered\": 26,\r\n    \"excludeAbsenceReasons\": [],\r\n    \"includeAbsenceReasons\": [],\r\n    \"excludeAbsencePlanIds\": [300001065621572]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/v2/absences/absence-type-usage-statistics/search"
+			},
+			"response": []
+		},
+		{
+			"name": "duration rules",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b614db6-343a-48ae-88ba-9b9e220a8678",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"_postman_id": "2521cc2b-882b-435d-ae8d-9b935ebe3a8e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{auth}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiIwNWU0ZjJkOS05MDY4LTQ5MGYtYTBmYy1jMTg4Y2NlODY5ZDciLCJhbGciOiJSUzI1NiJ9.eyJqdGkiOiJPa282RDV6WkZ0SVFrbWdWOGVjZ0tyY3VMTUpfRjlnVXJiUzEiLCJpc3MiOiJodHRwczovL2FwaS1wcGUudGVzY28uY29tL2lkZW50aXR5L3Y0L2lzc3VlLXRva2VuIiwic3ViIjoiMGI3MmRkNjItMDI0Mi00NzllLWFkZmYtNDcxZjIwM2JlYWNlIiwiaWF0IjoxNjY5Mjg0NDM0LCJuYmYiOjE2NjkyODQ0MzQsImV4cCI6MTY2OTI4ODAzNCwic2NvcGUiOiJpbnRlcm5hbCBwdWJsaWMiLCJjb25maWRlbmNlX2xldmVsIjoxMiwiY2xpZW50X2lkIjoiNzAxYmE2YTYtODMzZC00OTczLThlMWUtYWM3MGU5MTRhMTJkIiwidG9rZW5fdHlwZSI6ImJlYXJlciIsInNpZCI6IjAxR0pNSFA0OTZQODY0UVkwUUM5VkRLNk5WLTBkN2YzNjRmLWJhMWYtNGRjOS1iMjUwLTQ2ZTBjYjZhYjE4MC1KOUNxZFIxcXhiMmxqOWo5MDJ3QndVQ2lJNFVhR0NoY0tOMXEifQ.JZx5cFRefZZUB07vWfLJVtMgOXIi_P-2eleNTxXtHsDw0EskbSawf3zjUp8V7DJBUfcFezWNyvs4b4nSfeEByrUDLIfFqVL15fqF0oqfeKL_coXccgFicTPlmiwyP4DZ7-4gQdf-_M5FGz5BjyVRVJbDBHW1fGmnZGPB3EVfPRKVmLEvIdkKQI5jJGAsiRAiiES0BUiZBpmET2aiZPYI2e0jqH0JFqvH9XIhXJRB6jLnjQvpRQ13oE2ev3OaaImlUUvYrSYhV1hFh1le7DXY3rehu2jta7Zwty9iAGZlXyDdss3yulN_7l9jfPlWd5y8iV3rdgKqvPe5U2zpOe8wbA",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"colleagueUUID\": \"bf9f31a6-cdc3-48a7-b1da-d0312da05c77\",\n    \"absenceTypeName\": \"Maternity Leave\",\n    \"startDate\": \"2022-11-23\",\n    \"startTime\": \"06:00\",\n    \"endDate\": \"2022-11-23\",\n    \"endTime\": \"17:00\",\n    \"absenceUUID\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\n}",
+					"options": {}
+				},
+				"url": "{{baseURL}}/v2/absences/rules/duration"
+			},
+			"response": []
+		}
+	]
+}
