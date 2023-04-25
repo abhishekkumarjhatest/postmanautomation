@@ -1,0 +1,1328 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: AbsenceAPI
+  contact: {}
+host: example.com
+basePath: /
+securityDefinitions: {}
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /v2/absences/search:
+    post:
+      summary: /v2/absences/search-Family
+      tags:
+      - Misc
+      operationId: /v2/absences/search-Family
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: client_id
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Authorization
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1v2~1absences~1search-Family-Request'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/{absenceUUID}:
+    get:
+      summary: /v2/absences/{absenceUUID}
+      tags:
+      - Misc
+      operationId: /v2/absences/{absenceUUID}
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: absenceUUID
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/~1v2~1absences~1%7BabsenceUUID%7D'
+          examples:
+            application/json:
+              personAbsenceEntryId: 300024259542920
+              colleague:
+                colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+              absenceUUID: 6423301f-72b3-4b65-8caf-392221815697
+              comments: dsdgfdfgh
+              createdBy:
+                colleagueUUID: 0b72dd62-0242-479e-adff-471f203beace
+              lastUpdatedBy:
+                colleagueUUID: null
+              source: REST
+              absenceDuration: 7.5
+              unitOfMeasure: H
+              unitsOfMeasureMeaning: Hours
+              creationDateTime: 2022-08-24T09:17:54Z
+              startDateTime: 2022-08-03T08:00:00Z
+              endDateTime: 2022-08-03T16:00:00Z
+              lastUpdatedDateTime: 2022-11-09T11:31:54.425Z
+              absenceVersion: 64
+              absenceType:
+                id: 300000001843214
+                name: Paid Absence
+              absenceReason:
+                id: 300000559109011
+                name: Compassionate Leave
+              absenceStatus:
+                code: SUBMITTED
+                description: ' absence is created or updated'
+              absenceApprovalStatus:
+                code: APPROVED
+                description: absence is approved
+              absenceEntitlementIds:
+              - 300024444134601
+              absenceOnCoreShift:
+                absenceOnCoreShiftUUID: 5b4bfead-e9e5-4862-933d-ffdefc5b139e
+                startDateTime: 2022-08-03T08:00:00Z
+                endDateTime: 2022-08-03T16:00:00Z
+                duration: 7.5
+              attentionNeeded: false
+              documentDetails: []
+              maternityDetails: {}
+          headers:
+            Date:
+              type: string
+              default: Fri, 14 Apr 2023 07:10:42 GMT
+            Transfer-Encoding:
+              type: string
+              default: chunked
+            Connection:
+              type: string
+              default: keep-alive
+      security: []
+  /v2/absences/absence-uuid/{absenceUUID}/person-absence-entry-id:
+    get:
+      summary: /v2/absences/absence-uuid/{absenceUUID}/absence-entry-id
+      tags:
+      - Misc
+      operationId: /v2/absences/absence-uuid/{absenceUUID}/absence-entry-id
+      deprecated: false
+      produces:
+      - text/plain
+      parameters:
+      - name: absenceUUID
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        default:
+          description: ''
+          schema:
+            type: integer
+            default: ''
+            format: int64
+          examples:
+            text/plain: 300024259542920
+          headers: {}
+      security: []
+  /v2/absences/person-absence-entry-id/{PersonabsenceentryID}/absence-uuid:
+    get:
+      summary: /v2/absences/absence-entry-id/{personAbsenceEntryId}/absence-uuid
+      tags:
+      - Misc
+      operationId: /v2/absences/absence-entry-id/{personAbsenceEntryId}/absence-uuid
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: PersonabsenceentryID
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/{absenceUUID}/entitlements:
+    get:
+      summary: /v2/absences/{absenceUUID}/entitlements
+      tags:
+      - Misc
+      operationId: /v2/absences/{absenceUUID}/entitlements
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: absenceUUID
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/colleagues/61d3ea90-a50a-417b-9a4f-83fc70aca0f7/absence-types:
+    get:
+      summary: /v2/absences/colleagues/{colleagueUUId}/absence-types
+      tags:
+      - Misc
+      operationId: /v2/absences/colleagues/{colleagueUUId}/absence-types
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: traceId
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/special-conditions:
+    get:
+      summary: /v2/absences/special-conditions
+      tags:
+      - Misc
+      operationId: /v2/absences/special-conditions
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: absenceTypeNames
+        in: query
+        required: true
+        type: string
+        description: ''
+      - name: TraceId
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/absence-plans:
+    get:
+      summary: /v2/absences/absence-plans
+      tags:
+      - Misc
+      operationId: /v2/absences/absence-plans
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: page
+        in: query
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: count
+        in: query
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: legislationCode
+        in: query
+        required: true
+        type: string
+        description: ''
+      - name: TraceId
+        in: query
+        required: true
+        type: string
+        description: ''
+      - name: TraceId
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: legislationCode
+        in: header
+        required: true
+        type: string
+        description: ''
+      - name: page
+        in: header
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: count
+        in: header
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/absence-type-status-report/search:
+    post:
+      summary: /v2/absences/absence-type-status-report/search
+      tags:
+      - Misc
+      operationId: /v2/absences/absence-type-status-report/search
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1v2~1absences~1absence-type-status-report~1search-request'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/absence-requests/search:
+    post:
+      summary: /v2/absences/absence-requests/search
+      tags:
+      - Misc
+      operationId: /v2/absences/absence-requests/search
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1v2~1absences~1absence-requests~1search-request'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/plan-balances/total-plan-balances/search:
+    post:
+      summary: /v2/absences/plan-balances/total-plan-balances/search
+      tags:
+      - Misc
+      operationId: /v2/absences/plan-balances/total-plan-balances/search
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1v2~1absences~1plan-balances~1total-plan-balances~1search-request'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/plan-balances/search:
+    post:
+      summary: /v2/absences/plan-balances/search
+      tags:
+      - Misc
+      operationId: /v2/absences/plan-balances/search
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1v2~1absences~1plan-balances~1search-request'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/person-absence-entry-id/{PersonabsenceentryID}/core-shift-uuid:
+    get:
+      summary: /v2/absences/person-absence-entry-id/{personAbsenceEntryId}/core-shift-uuid
+      tags:
+      - Misc
+      operationId: /v2/absences/person-absence-entry-id/{personAbsenceEntryId}/core-shift-uuid
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: PersonabsenceentryID
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/core-shift-uuid/{coreshiftuuid}/person-absence-entry-id:
+    get:
+      summary: /v2/absences/core-shift-uuid/{coreShiftUUID}/person-absence-entry-id
+      tags:
+      - Misc
+      operationId: /v2/absences/core-shift-uuid/{coreShiftUUID}/person-absence-entry-id
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: coreshiftuuid
+        in: path
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/tasks:
+    get:
+      summary: /v2/absences/tasks
+      tags:
+      - Misc
+      operationId: /v2/absences/tasks
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: count
+        in: header
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: page
+        in: header
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: absenceUUID
+        in: header
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/absences-projection/search:
+    post:
+      summary: Projection
+      tags:
+      - Misc
+      operationId: Projection
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          example:
+          - 3fa85f64-5717-4562-b3fc-2c963f66afa6
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v1/tasks/my/manager-approval-requests:
+    get:
+      summary: approvals
+      tags:
+      - Misc
+      operationId: approvals
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: managerUUID
+        in: query
+        required: true
+        type: string
+        description: ''
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/absence-type-usage-statistics/search:
+    post:
+      summary: statics
+      tags:
+      - Misc
+      operationId: statics
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/staticsrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+  /v2/absences/rules/duration:
+    post:
+      summary: duration rules
+      tags:
+      - Misc
+      operationId: durationrules
+      deprecated: false
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: Content-Type
+        in: header
+        required: false
+        enum:
+        - application/json
+        type: string
+        description: ''
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/durationrulesrequest'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      security: []
+definitions:
+  /v2/absences/search-Family-Request:
+    title: /v2/absences/search-Family-Request
+    example:
+      colleagueUUID:
+      - 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      startDate: 2022-01-02
+      endDate: 2022-12-01
+      absenceStatusCode: SUBMITTED
+      absenceApprovalStatusCode:
+      - APPROVED
+      absenceTypeName:
+      - Maternity Leave
+      - Adoption Leave
+      - Holiday
+    type: object
+    properties:
+      colleagueUUID:
+        type: array
+        items:
+          type: string
+      startDate:
+        type: string
+      endDate:
+        type: string
+      absenceStatusCode:
+        type: string
+      absenceApprovalStatusCode:
+        type: array
+        items:
+          type: string
+      absenceTypeName:
+        type: array
+        items:
+          type: string
+    required:
+    - colleagueUUID
+    - startDate
+    - endDate
+    - absenceStatusCode
+    - absenceApprovalStatusCode
+    - absenceTypeName
+  /v2/absences/search-nonFamilyRequest:
+    title: /v2/absences/search-nonFamilyRequest
+    example:
+      colleagueUUID:
+      - 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      startDate: 2022-08-01
+      endDate: 2022-08-30
+      absenceStatusCode: SUBMITTED
+      absenceApprovalStatusCode:
+      - APPROVED
+      absenceStatusCodeExclude: string
+      sort:
+      - field: startDateTime
+        order: ascending
+      page: 0
+      count: 1000
+    type: object
+    properties:
+      colleagueUUID:
+        type: array
+        items:
+          type: string
+      startDate:
+        type: string
+      endDate:
+        type: string
+      absenceStatusCode:
+        type: string
+      absenceApprovalStatusCode:
+        type: array
+        items:
+          type: string
+      absenceStatusCodeExclude:
+        type: string
+      sort:
+        type: array
+        items:
+          $ref: '#/definitions/Sort'
+      page:
+        type: integer
+        format: int32
+      count:
+        type: integer
+        format: int32
+    required:
+    - colleagueUUID
+    - startDate
+    - endDate
+    - absenceStatusCode
+    - absenceApprovalStatusCode
+    - absenceStatusCodeExclude
+    - sort
+    - page
+    - count
+  Sort:
+    title: Sort
+    example:
+      field: startDateTime
+      order: ascending
+    type: object
+    properties:
+      field:
+        type: string
+      order:
+        type: string
+    required:
+    - field
+    - order
+  /v2/absences/search-nonFamily:
+    title: /v2/absences/search-nonFamily
+    example:
+      totalCount: 2
+      hasNext: false
+      totalPages: 1
+      absenceResponseList:
+      - personAbsenceEntryId: 300024259542920
+        colleague:
+          colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+        absenceUUID: 6423301f-72b3-4b65-8caf-392221815697
+        comments: dsdgfdfgh
+        createdBy:
+          colleagueUUID: 0b72dd62-0242-479e-adff-471f203beace
+        lastUpdatedBy:
+          colleagueUUID: null
+        source: REST
+        absenceDuration: 7.5
+        unitOfMeasure: H
+        unitsOfMeasureMeaning: Hours
+        creationDateTime: 2022-08-24T09:17:54Z
+        startDateTime: 2022-08-03T08:00:00Z
+        endDateTime: 2022-08-03T16:00:00Z
+        lastUpdatedDateTime: 2022-11-09T11:31:54.425Z
+        absenceVersion: 64
+        absenceType:
+          id: 300000001843214
+          name: Paid Absence
+        absenceReason:
+          id: 300000559109011
+          name: Compassionate Leave
+        absenceStatus:
+          code: SUBMITTED
+          description: ' absence is created or updated'
+        absenceApprovalStatus:
+          code: APPROVED
+          description: absence is approved
+        absenceEntitlementIds:
+        - 300024444134601
+        absenceOnCoreShift:
+          absenceOnCoreShiftUUID: 5b4bfead-e9e5-4862-933d-ffdefc5b139e
+          startDateTime: 2022-08-03T08:00:00Z
+          endDateTime: 2022-08-03T16:00:00Z
+          duration: 7.5
+        attentionNeeded: false
+        documentDetails: []
+        maternityDetails: {}
+      - colleague:
+          colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+        absenceUUID: 623d00bf-854b-4b23-b637-196f8256ce5e
+        comments: creating AW + CS hours, updating absence
+        createdBy:
+          colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+        lastUpdatedBy:
+          colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+        source: ENTERPRISE_REST_API
+        unitOfMeasure: H
+        unitsOfMeasureMeaning: Hours
+        creationDateTime: 2022-08-12T03:49:00Z
+        startDateTime: 2022-08-29T18:00:00Z
+        endDateTime: 2022-08-30T07:00:00Z
+        lastUpdatedDateTime: 2022-08-12T04:49:22.166Z
+        absenceVersion: 4
+        absenceType:
+          id: 300000001843054
+          name: Holiday
+        absenceReason:
+          id: 300001079268981
+          name: Holiday
+        absenceStatus:
+          code: SUBMITTED
+          description: ' absence is created or updated'
+        absenceApprovalStatus:
+          code: APPROVED
+          description: absence is approved
+        absenceEntitlementIds: []
+        attentionNeeded: false
+        documentDetails: []
+        maternityDetails: {}
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        format: int32
+      hasNext:
+        type: boolean
+      totalPages:
+        type: integer
+        format: int32
+      absenceResponseList:
+        type: array
+        items:
+          $ref: '#/definitions/AbsenceResponseList'
+    required:
+    - totalCount
+    - hasNext
+    - totalPages
+    - absenceResponseList
+  AbsenceResponseList:
+    title: AbsenceResponseList
+    example:
+      personAbsenceEntryId: 300024259542920
+      colleague:
+        colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      absenceUUID: 6423301f-72b3-4b65-8caf-392221815697
+      comments: dsdgfdfgh
+      createdBy:
+        colleagueUUID: 0b72dd62-0242-479e-adff-471f203beace
+      lastUpdatedBy:
+        colleagueUUID: null
+      source: REST
+      absenceDuration: 7.5
+      unitOfMeasure: H
+      unitsOfMeasureMeaning: Hours
+      creationDateTime: 2022-08-24T09:17:54Z
+      startDateTime: 2022-08-03T08:00:00Z
+      endDateTime: 2022-08-03T16:00:00Z
+      lastUpdatedDateTime: 2022-11-09T11:31:54.425Z
+      absenceVersion: 64
+      absenceType:
+        id: 300000001843214
+        name: Paid Absence
+      absenceReason:
+        id: 300000559109011
+        name: Compassionate Leave
+      absenceStatus:
+        code: SUBMITTED
+        description: ' absence is created or updated'
+      absenceApprovalStatus:
+        code: APPROVED
+        description: absence is approved
+      absenceEntitlementIds:
+      - 300024444134601
+      absenceOnCoreShift:
+        absenceOnCoreShiftUUID: 5b4bfead-e9e5-4862-933d-ffdefc5b139e
+        startDateTime: 2022-08-03T08:00:00Z
+        endDateTime: 2022-08-03T16:00:00Z
+        duration: 7.5
+      attentionNeeded: false
+      documentDetails: []
+      maternityDetails: {}
+    type: object
+    properties:
+      personAbsenceEntryId:
+        type: integer
+        format: int64
+      colleague:
+        $ref: '#/definitions/Colleague'
+      absenceUUID:
+        type: string
+      comments:
+        type: string
+      createdBy:
+        $ref: '#/definitions/CreatedBy'
+      lastUpdatedBy:
+        $ref: '#/definitions/LastUpdatedBy'
+      source:
+        type: string
+      absenceDuration:
+        type: number
+        format: double
+      unitOfMeasure:
+        type: string
+      unitsOfMeasureMeaning:
+        type: string
+      creationDateTime:
+        type: string
+      startDateTime:
+        type: string
+      endDateTime:
+        type: string
+      lastUpdatedDateTime:
+        type: string
+      absenceVersion:
+        type: integer
+        format: int32
+      absenceType:
+        $ref: '#/definitions/AbsenceType'
+      absenceReason:
+        $ref: '#/definitions/AbsenceReason'
+      absenceStatus:
+        $ref: '#/definitions/AbsenceStatus'
+      absenceApprovalStatus:
+        $ref: '#/definitions/AbsenceApprovalStatus'
+      absenceEntitlementIds:
+        type: array
+        items: {}
+      absenceOnCoreShift:
+        $ref: '#/definitions/AbsenceOnCoreShift'
+      attentionNeeded:
+        type: boolean
+      documentDetails:
+        type: array
+        items:
+          type: string
+      maternityDetails:
+        type: object
+    required:
+    - colleague
+    - absenceUUID
+    - comments
+    - createdBy
+    - lastUpdatedBy
+    - source
+    - unitOfMeasure
+    - unitsOfMeasureMeaning
+    - creationDateTime
+    - startDateTime
+    - endDateTime
+    - lastUpdatedDateTime
+    - absenceVersion
+    - absenceType
+    - absenceReason
+    - absenceStatus
+    - absenceApprovalStatus
+    - absenceEntitlementIds
+    - attentionNeeded
+    - documentDetails
+    - maternityDetails
+  Colleague:
+    title: Colleague
+    example:
+      colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+    type: object
+    properties:
+      colleagueUUID:
+        type: string
+    required:
+    - colleagueUUID
+  CreatedBy:
+    title: CreatedBy
+    example:
+      colleagueUUID: 0b72dd62-0242-479e-adff-471f203beace
+    type: object
+    properties:
+      colleagueUUID:
+        type: string
+    required:
+    - colleagueUUID
+  LastUpdatedBy:
+    title: LastUpdatedBy
+    example:
+      colleagueUUID: null
+    type: object
+    properties:
+      colleagueUUID:
+        type: string
+    required:
+    - colleagueUUID
+  AbsenceType:
+    title: AbsenceType
+    example:
+      id: 300000001843214
+      name: Paid Absence
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    required:
+    - id
+    - name
+  AbsenceReason:
+    title: AbsenceReason
+    example:
+      id: 300000559109011
+      name: Compassionate Leave
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    required:
+    - id
+    - name
+  AbsenceStatus:
+    title: AbsenceStatus
+    example:
+      code: SUBMITTED
+      description: ' absence is created or updated'
+    type: object
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+    required:
+    - code
+    - description
+  AbsenceApprovalStatus:
+    title: AbsenceApprovalStatus
+    example:
+      code: APPROVED
+      description: absence is approved
+    type: object
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+    required:
+    - code
+    - description
+  AbsenceOnCoreShift:
+    title: AbsenceOnCoreShift
+    example:
+      absenceOnCoreShiftUUID: 5b4bfead-e9e5-4862-933d-ffdefc5b139e
+      startDateTime: 2022-08-03T08:00:00Z
+      endDateTime: 2022-08-03T16:00:00Z
+      duration: 7.5
+    type: object
+    properties:
+      absenceOnCoreShiftUUID:
+        type: string
+      startDateTime:
+        type: string
+      endDateTime:
+        type: string
+      duration:
+        type: number
+        format: double
+    required:
+    - absenceOnCoreShiftUUID
+    - startDateTime
+    - endDateTime
+    - duration
+  /v2/absences/{absenceUUID}:
+    title: /v2/absences/{absenceUUID}
+    example:
+      personAbsenceEntryId: 300024259542920
+      colleague:
+        colleagueUUID: 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      absenceUUID: 6423301f-72b3-4b65-8caf-392221815697
+      comments: dsdgfdfgh
+      createdBy:
+        colleagueUUID: 0b72dd62-0242-479e-adff-471f203beace
+      lastUpdatedBy:
+        colleagueUUID: null
+      source: REST
+      absenceDuration: 7.5
+      unitOfMeasure: H
+      unitsOfMeasureMeaning: Hours
+      creationDateTime: 2022-08-24T09:17:54Z
+      startDateTime: 2022-08-03T08:00:00Z
+      endDateTime: 2022-08-03T16:00:00Z
+      lastUpdatedDateTime: 2022-11-09T11:31:54.425Z
+      absenceVersion: 64
+      absenceType:
+        id: 300000001843214
+        name: Paid Absence
+      absenceReason:
+        id: 300000559109011
+        name: Compassionate Leave
+      absenceStatus:
+        code: SUBMITTED
+        description: ' absence is created or updated'
+      absenceApprovalStatus:
+        code: APPROVED
+        description: absence is approved
+      absenceEntitlementIds:
+      - 300024444134601
+      absenceOnCoreShift:
+        absenceOnCoreShiftUUID: 5b4bfead-e9e5-4862-933d-ffdefc5b139e
+        startDateTime: 2022-08-03T08:00:00Z
+        endDateTime: 2022-08-03T16:00:00Z
+        duration: 7.5
+      attentionNeeded: false
+      documentDetails: []
+      maternityDetails: {}
+    type: object
+    properties:
+      personAbsenceEntryId:
+        type: integer
+        format: int64
+      colleague:
+        $ref: '#/definitions/Colleague'
+      absenceUUID:
+        type: string
+      comments:
+        type: string
+      createdBy:
+        $ref: '#/definitions/CreatedBy'
+      lastUpdatedBy:
+        $ref: '#/definitions/LastUpdatedBy'
+      source:
+        type: string
+      absenceDuration:
+        type: number
+        format: double
+      unitOfMeasure:
+        type: string
+      unitsOfMeasureMeaning:
+        type: string
+      creationDateTime:
+        type: string
+      startDateTime:
+        type: string
+      endDateTime:
+        type: string
+      lastUpdatedDateTime:
+        type: string
+      absenceVersion:
+        type: integer
+        format: int32
+      absenceType:
+        $ref: '#/definitions/AbsenceType'
+      absenceReason:
+        $ref: '#/definitions/AbsenceReason'
+      absenceStatus:
+        $ref: '#/definitions/AbsenceStatus'
+      absenceApprovalStatus:
+        $ref: '#/definitions/AbsenceApprovalStatus'
+      absenceEntitlementIds:
+        type: array
+        items:
+          type: integer
+          format: int64
+      absenceOnCoreShift:
+        $ref: '#/definitions/AbsenceOnCoreShift'
+      attentionNeeded:
+        type: boolean
+      documentDetails:
+        type: array
+        items:
+          type: string
+      maternityDetails:
+        type: object
+    required:
+    - personAbsenceEntryId
+    - colleague
+    - absenceUUID
+    - comments
+    - createdBy
+    - lastUpdatedBy
+    - source
+    - absenceDuration
+    - unitOfMeasure
+    - unitsOfMeasureMeaning
+    - creationDateTime
+    - startDateTime
+    - endDateTime
+    - lastUpdatedDateTime
+    - absenceVersion
+    - absenceType
+    - absenceReason
+    - absenceStatus
+    - absenceApprovalStatus
+    - absenceEntitlementIds
+    - absenceOnCoreShift
+    - attentionNeeded
+    - documentDetails
+    - maternityDetails
+  /v2/absences/absence-type-status-report/search-request:
+    title: /v2/absences/absence-type-status-report/search-request
+    example:
+      page: 0
+      count: 1
+      colleagueUUIDs:
+      - 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      absenceTypeName:
+      - Personal Day
+      - Holiday
+      statusAsOfDate: 2023-03-31
+    type: object
+    properties:
+      page:
+        type: integer
+        format: int32
+      count:
+        type: integer
+        format: int32
+      colleagueUUIDs:
+        type: array
+        items:
+          type: string
+      absenceTypeName:
+        type: array
+        items:
+          type: string
+      statusAsOfDate:
+        type: string
+    required:
+    - page
+    - count
+    - colleagueUUIDs
+    - absenceTypeName
+    - statusAsOfDate
+  /v2/absences/absence-requests/search-request:
+    title: /v2/absences/absence-requests/search-request
+    example:
+      colleagueUUIDs:
+      - 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      startDate: 2023-04-14
+      endDate: 2023-04-15
+      status:
+      - FAILURE
+      - PENDING
+      - SUCCESS
+      offset: 0
+      count: 100
+      sortBy:
+      - field: startDateTime
+        order: ascending
+    type: object
+    properties:
+      colleagueUUIDs:
+        type: array
+        items:
+          type: string
+      startDate:
+        type: string
+      endDate:
+        type: string
+      status:
+        type: array
+        items:
+          type: string
+      offset:
+        type: integer
+        format: int32
+      count:
+        type: integer
+        format: int32
+      sortBy:
+        type: array
+        items:
+          $ref: '#/definitions/SortBy'
+    required:
+    - colleagueUUIDs
+    - startDate
+    - endDate
+    - status
+    - offset
+    - count
+    - sortBy
+  SortBy:
+    title: SortBy
+    example:
+      field: startDateTime
+      order: ascending
+    type: object
+    properties:
+      field:
+        type: string
+      order:
+        type: string
+    required:
+    - field
+    - order
+  /v2/absences/plan-balances/total-plan-balances/search-request:
+    title: /v2/absences/plan-balances/total-plan-balances/search-request
+    example:
+      colleagueUUID:
+      - 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      balanceAsOfDate: 2023-03-31T00:00:00.000+0000
+      count: 100
+      page: 0
+    type: object
+    properties:
+      colleagueUUID:
+        type: array
+        items:
+          type: string
+      balanceAsOfDate:
+        type: string
+      count:
+        type: integer
+        format: int32
+      page:
+        type: integer
+        format: int32
+    required:
+    - colleagueUUID
+    - balanceAsOfDate
+    - count
+    - page
+  /v2/absences/plan-balances/search-request:
+    title: /v2/absences/plan-balances/search-request
+    example:
+      colleagueUUID:
+      - 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      balanceAsOfDate: ' 2024-06-03T00:00:00.000+0000'
+    type: object
+    properties:
+      colleagueUUID:
+        type: array
+        items:
+          type: string
+      balanceAsOfDate:
+        type: string
+    required:
+    - colleagueUUID
+    - balanceAsOfDate
+  staticsrequest:
+    title: staticsrequest
+    example:
+      absenceType: Sickness
+      colleagueUuids:
+      - 61d3ea90-a50a-417b-9a4f-83fc70aca0f7
+      pastWeeksToBeConsidered: 26
+      excludeAbsenceReasons: []
+      includeAbsenceReasons: []
+      excludeAbsencePlanIds:
+      - 300001065621572
+    type: object
+    properties:
+      absenceType:
+        type: string
+      colleagueUuids:
+        type: array
+        items:
+          type: string
+      pastWeeksToBeConsidered:
+        type: integer
+        format: int32
+      excludeAbsenceReasons:
+        type: array
+        items:
+          type: string
+      includeAbsenceReasons:
+        type: array
+        items:
+          type: string
+      excludeAbsencePlanIds:
+        type: array
+        items:
+          type: integer
+          format: int64
+    required:
+    - absenceType
+    - colleagueUuids
+    - pastWeeksToBeConsidered
+    - excludeAbsenceReasons
+    - includeAbsenceReasons
+    - excludeAbsencePlanIds
+  durationrulesrequest:
+    title: durationrulesrequest
+    example:
+      colleagueUUID: bf9f31a6-cdc3-48a7-b1da-d0312da05c77
+      absenceTypeName: Maternity Leave
+      startDate: 2022-11-23
+      startTime: 06:00
+      endDate: 2022-11-23
+      endTime: 17:00
+      absenceUUID: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    type: object
+    properties:
+      colleagueUUID:
+        type: string
+      absenceTypeName:
+        type: string
+      startDate:
+        type: string
+      startTime:
+        type: string
+      endDate:
+        type: string
+      endTime:
+        type: string
+      absenceUUID:
+        type: string
+    required:
+    - colleagueUUID
+    - absenceTypeName
+    - startDate
+    - startTime
+    - endDate
+    - endTime
+    - absenceUUID
+security: []
+tags:
+- name: Misc
+  description: ''
